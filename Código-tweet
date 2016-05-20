@@ -1,0 +1,31 @@
+// essas importações são importantes, mas mais importante que isso é baixá-las para seu computador 
+// através do site http://twitter4j.org/en/index.html#download, feito isso, você deve seguir as indicações 
+// do eclipse que são: botão direito do mouse no seu projeto do eclipse>Properties>Java Build Path>Add External JARS>twitter4j-core
+import twitter4j.Status;	
+import twitter4j.Twitter;	
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;	
+import twitter4j.conf.ConfigurationBuilder;		
+public class Main {	
+	public static void main(String[] args) throws TwitterException  {	
+		ConfigurationBuilder config = new ConfigurationBuilder();
+		config.setDebugEnabled(true)
+		//Esses números você consegue através do site https://apps.twitter.com/ e depois de gerá-los
+		//só colocar aqui
+		.setOAuthConsumerKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+		.setOAuthConsumerSecret("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+		.setOAuthAccessToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")	
+		.setOAuthAccessTokenSecret("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");		
+		TwitterFactory fact = new TwitterFactory(config.build());
+		Twitter twitter = fact.getInstance(); 
+					
+		Status status;				
+		try {					
+			status = twitter.updateStatus("Primeiro tweet feito através de um código Java");					
+			System.out.println("Tweet enviado com sucesso");
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();				
+			}
+		}
+	}
